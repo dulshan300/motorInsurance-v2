@@ -1,0 +1,203 @@
+
+    <div id="app_ins" class="bg-purple-700 p-5 min-h-screen flex flex-col items-center justify-start">
+
+        <ul class="nav flex justify-around items-center border-t w-full h-0 relative mt-7 mb-14">
+            <li v-on:click="form_step=1" class="step">
+                <span class="step_number">1</span>
+                <span class="step_title">Vehicle Details</span>
+            </li>
+            <li class="step">
+                <span class="step_number">2</span>
+                <span class="step_title">insurance quote</span>
+            </li>
+        </ul>
+
+        <form action="#" class="w-full" method="get">
+
+            <div v-show="form_step==1" class="section">
+
+                <Vselect :value="vehicleUsages" error="vehicleUsage" title="Vehicle Usage" v-model="vehicleUsage">
+                </Vselect>
+
+                <Vinput placeholder="Enter Vehicle Value (GHS)" error="vehicleValue" type="number"
+                    title="Vehicle Value (GHS)" v-model="vehicleValue"></Vinput>
+
+                <Vinput placeholder="Enter Number Of Seats" error="numberOfSeats" type="number" title="Number of Seats"
+                    v-model="numberOfSeats"></Vinput>
+
+                <Vselect :value="enginSizes" error="enginSize" title="Engine Size / Cubic Capacity (CC)"
+                    v-model="enginSize"></Vselect>
+
+                <div class="flex items-center justify-center h-20">
+                    <button v-on:click="step1" type="button" class="continue_button">Continue</button>
+                </div>
+            </div>
+
+            <div v-show="form_step==2" class="section">
+
+                <Vpackges></Vpackges>
+
+            </div>
+
+            <div v-show="form_step==3" class="relative w-11/12 left-8">
+
+                <ul class="sub-navi">
+                    <li v-on:click="form_sub_step=1" v-bind:class="{active:form_sub_step==1}">1</li>
+                    <li v-on:click="step2" v-bind:class="{active:form_sub_step==2}">2</li>
+                    <li v-on:click="step3" v-bind:class="{active:form_sub_step==3}">3</li>
+                    <li v-on:click="step4" v-bind:class="{active:form_sub_step==4}">4</li>
+                </ul>
+
+                <div class="sub-details">
+
+                    <div v-show="form_sub_step==1" class="section">
+
+                        <h2 class="title font-bold mb-4 uppercase">Insured Details</h2>
+
+                        <Vselect :value="['Mr.','Miss.','Mrs.','Master.']" error="title" title="Title" v-model="title">
+                        </Vselect>
+
+                        <Vinput placeholder="Enter Surename" error="surname" title="Surename" v-model="surname">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Other Names" error="othernames" title="Other Names"
+                            v-model="othernames">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Date of Birth" type="date" error="dob" title="Date of Birth"
+                            v-model="dob">
+                        </Vinput>
+
+                        <Vselect :value="['Male','Female']" error="sex" title="Sex" v-model="sex">
+                        </Vselect>
+
+                        <div class="flex items-center justify-center h-20">
+                            <button v-on:click="step2" type="button" class="continue_button">Continue</button>
+                        </div>
+
+
+                    </div>
+
+                    <div v-show="form_sub_step==2" class="section">
+
+                        <h2 class="title font-bold mb-4 uppercase">Identification</h2>
+
+                        <Vselect :value="['Passport','Drivers License','Voters ID','National ID']" error="id_type"
+                            title="ID Type" v-model="id_type">
+                        </Vselect>
+
+                        <Vinput placeholder="Enter ID Number" error="id_number" title="ID Number" v-model="id_number">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Email" type="email" error="email" title="Email" v-model="email">
+                        </Vinput>
+
+                        <Vphone placeholder="Enter Phone Number" error="phone_number" title="Phone Number"
+                            v-model="phone_number"></Vphone>
+
+                        <Vinput placeholder="Enter Postal Address" error="postal_address" title="Postal Address"
+                            v-model="postal_address">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Office / Home Location" error="office_address"
+                            title="Office / Home Location" v-model="office_address">
+                        </Vinput>
+
+
+                        <div class="flex items-center justify-center h-20">
+                            <button v-on:click="step3" type="button" class="continue_button">Continue</button>
+                        </div>
+
+                    </div>
+
+
+                    <div v-show="form_sub_step==3" class="section">
+
+                        <h2 class="title font-bold mb-4 uppercase">Vehical Details</h2>
+
+                        <Vinput placeholder="Enter Make / Model of Vehicle" error="model_of_vehicle"
+                            title="Make / Model of Vehicle" v-model="model_of_vehicle">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Year of Manufacture" error="year_of_manufacture"
+                            title="Year of Manufacture" v-model="year_of_manufacture">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Engine Number" error="engine_number" title="Engine Number"
+                            v-model="engine_number">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Chassis Number" error="chassis_number" title="Chassis Number"
+                            v-model="chassis_number">
+                        </Vinput>
+
+                        <Vinput placeholder="Enter Registration Number" error="registration_number"
+                            title="Registration Number" v-model="registration_number">
+                        </Vinput>
+
+                        <Vselect :value="['Learner','Less than 2 years','Over 2 years']" error="driving_experience"
+                            title="Driving Experience" v-model="driving_experience">
+                        </Vselect>
+
+                        <div class="flex items-center justify-center h-20">
+                            <button v-on:click="step4" type="button" class="continue_button">Continue</button>
+                        </div>
+
+                    </div>
+
+                    <div v-show="form_sub_step==4" class="section">
+
+                        <h2 class="title font-bold mb-4 uppercase">DECLARATION</h2>
+
+                        <p>
+                            I / We warrant that the above statement and particulars are true and I/ We hereby agree that
+                            this Declaration shall be held promissory and of continuing effect and shall form the basis
+                            of and be deemed to be incorporated in the contract between me / us and PRIORITY INSURANCE
+                            COMPANY LIMITED, and I / We are willing to accept a policy subject to the terms prescribed
+                            by the Company therein and to pay the Premium thereon.
+                        </p>
+
+
+                        <div class="c-input-checkbox flex items-center mt-5">
+                            <input type="checkbox" v-model="agree" class="w-5 h-5 mr-3" id="decl">
+                            <label for="decl" class="font-bold">I have read DECLARATION.</label>
+                        </div>
+
+
+
+                        <div class="flex items-center justify-center h-20">
+                            <button v-on:click="form_sub_step=5" v-bind:disabled="!agree" type="button"
+                                class="continue_button">Accept & Continue</button>
+                        </div>
+
+                    </div>
+
+                    <div v-show="form_sub_step==5" class="section">
+
+                        <h2 class="title mb-4 uppercase">Check all details provided below to ensure they are all
+                            correct.</h2>
+
+                        <vsummery></vsummery>
+
+
+                        <div class="flex items-center justify-center h-20">
+                            <button v-on:click="1+1" type="button" class="continue_button">Continue</button>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/dulshan300/fvunitdurkinsurence@main/main.min.js"></script>
+    <!-- <script src="main.js"></script> -->
